@@ -1,3 +1,6 @@
+"""
+https://youtu.be/U0s0f995w14?si=LMacYMUox4jD-9lG
+"""
 import torch
 import torch.nn as nn
 
@@ -28,19 +31,24 @@ class SelfAttention(nn.Module):
         keys = self.keys(keys)
         queries = self.queries(queries)
 
+        # query와 key를 이용해서 단어쌍 사이의 관련성 계산
         energy = torch.einsum("nqhd, nkhd -> nhqk", [queries, keys])
         # queries shape : (N, query_len, heads, heads_dim)
         # keys shape : (N, key_len, heads, head_dim)
         # energy shape : (N, heads, query_len, key_len) -> # query : target sentence, # key : source sentence
 
+        # mask가 존재한다면 패딩된 부분의 값을 아주 작은 값(-1e20)으로 변경해줌.
         if mask is not None :
             energy = energy.masked_fill(mask == 0, float("-1e20"))
 
+        # energy에 softmax 함수 적용하여 어텐션값 계산
+        # key_len 차원을 기준으로 소프트 맥스 함수를 적용
         attention = torch.softmax(energy / (self.embed_size ** (1/2)), dim=3)
         
         out = torch.einsum("nhql, nlhd -> nqhd", [attention, values]).reshape(
             N, query_len, self.heads*self.head_dim
         )
+        # N : 배치크기, q : 쿼리 길이, k : 키 길이, h : 헤드 수, d : 헤드차원
         # attention shape : (N, heads, query_len, key_len) -> # key_len과 value_len는 항상 같다
         # values shape : (N, value_len, heads, heads_dim)
         # after einsum (N, query_len, heads, head_dim) then flatten last two dimensions
@@ -166,6 +174,7 @@ class Decoder(nn.Module):
         return out
     
 class Transformer(nn.Module):
+    # transformer class는 nn.Module을 상속받고 있음.
     def __init__(
             self,
             src_vocab_size,
@@ -181,6 +190,7 @@ class Transformer(nn.Module):
             max_length = 100
     ):
         super(Transformer, self).__init__()
+        # transformer의 __init__ 메서드 안에서 nn.Module의 __init__ 메서드를 호출하는 것 -> nn.Module의 __init__ 메서드를 호출해서, 필요한 초기화 작업 진행
 
         self.encoder = Encoder(
             src_vocab_size,
@@ -221,6 +231,8 @@ class Transformer(nn.Module):
         return trg_mask.to(self.device)
     
     def forward(self, src, trg):
+        # src : input sequence
+        # trg : output sequence
         src_mask = self.make_src_mask(src)
         trg_mask = self.make_trg_mask(trg)
         enc_src = self.encoder(src, src_mask)
