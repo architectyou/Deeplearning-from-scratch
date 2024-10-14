@@ -14,3 +14,5 @@ Deep learning skills from scratch
 |3|LLM|RAG|Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks|Facebook AI Research|[Paper](https://arxiv.org/abs/2005.11401)|[Blog](https://zero-ai.tistory.com/3)||
 |4|LLM|Agent, LLM|Augmented Language Models|Facebook AI Research|[Paper](https://arxiv.org/abs/2302.07842)|[Blog](https://zero-ai.tistory.com/26)||
 |5|LLM|MoE, SMoE|Mixtral of Experts|Mistral AI|[Paper](https://arxiv.org/pdf/2401.04088)|[Blog](https://zero-ai.tistory.com/51)||
+|6|LLM|LoRA(PEFT)|Low-Rank Adaptation of LLM||[Paper](https://arxiv.org/pdf/2106.09685)|[Blog](https://zero-ai.tistory.com/56)||
+|7|LLM|HyDE|Precise Zero-shot Dense Retriever without Relevance labels||[Paper](https://arxiv.org/abs/2212.10496)|[Blog](https://zero-ai.tistory.com/59)||
