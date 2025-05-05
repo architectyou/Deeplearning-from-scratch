@@ -16,3 +16,5 @@ Deep learning skills from scratch
 |5|LLM|MoE, SMoE|Mixtral of Experts|Mistral AI|[Paper](https://arxiv.org/pdf/2401.04088)|[Blog](https://zero-ai.tistory.com/51)||
 |6|LLM|LoRA(PEFT)|Low-Rank Adaptation of LLM||[Paper](https://arxiv.org/pdf/2106.09685)|[Blog](https://zero-ai.tistory.com/56)||
 |7|LLM|HyDE|Precise Zero-shot Dense Retriever without Relevance labels||[Paper](https://arxiv.org/abs/2212.10496)|[Blog](https://zero-ai.tistory.com/59)||
+|8|ASR|Contextual ASR|CTC-Assisted LLM-Based Contextual ASR||[Paper](https://arxiv.org/abs/2411.06437)|[Blog](https://zero-ai.tistory.com/68)||
+|9|LLM|Lost in the Middle|How Language Models Use Long Contexts|Stanford Univ|[Paper](https://arxiv.org/abs/2307.03172)|[Blog](https://zero-ai.tistory.com/76)||
